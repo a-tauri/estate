@@ -1,11 +1,20 @@
 <?php
-add_action('admin_menu', 'my_menu');
+add_action('admin_menu', 'apartment');
 
-function my_menu() {
-    add_menu_page('My Page Title', '不動産物件情報の管理', 'manage_options', 'my-page-slug', 'my_function');
+
+/*
+	アパート賃貸物件用
+ */
+function apartment() {
+    add_menu_page('賃貸物件の管理', '賃貸物件の管理', 'manage_options', 'my-page-slug', 
+    	function(){
+    		include_once 'estate/index.php';
+    	}
+	);	
+	add_submenu_page('my-page-slug', '売買物件の管理','売買物件の管理', 'manage_options', 'submenu_slug', function(){
+		include_once 'estate/salse.php';
+	} );
 }
 
-function my_function() {
-    echo 'Hello world!';
-}
+
 ?>
